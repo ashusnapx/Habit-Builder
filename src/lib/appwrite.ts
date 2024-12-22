@@ -249,3 +249,18 @@ export const updateSubjectLastOpened = async (id: string, timestamp: Date) => {
     throw error;
   }
 };
+
+// Function to delete a chapter
+export const deleteChapter = async (chapterId: string) => {
+  try {
+    await database.deleteDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.chapterCollectionId,
+      chapterId
+    );
+    console.log("Chapter deleted:", chapterId);
+  } catch (error) {
+    console.error("Error deleting chapter:", error);
+    throw error;
+  }
+};

@@ -20,6 +20,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Label } from "@/components/ui/label";
+import { deleteChapter } from "@/lib/appwrite";
 
 const ChaptersPage = () => {
   const { id: subjectIdParam } = useParams();
@@ -93,6 +94,17 @@ const ChaptersPage = () => {
       refetchChapters();
     } catch (err) {
       console.error("Failed to undo chapter completion:", err);
+    }
+  };
+
+  const handleDelete = async (chapterId: string) => {
+    try {
+      await deleteChapter(chapterId);
+
+      // console.log(`Chapter ${chapterId} deleted successfully.`);
+      refetchChapters();
+    } catch (error) {
+      // console.error("Error deleting chapter:", error);
     }
   };
 
@@ -263,6 +275,7 @@ const ChaptersPage = () => {
                 title={chapter.title}
                 completed={chapter.completed}
                 onCompleteChange={handleCompleteChange}
+                onDelete={handleDelete} // Pass the handleDelete function
                 createdAt={chapter.createdAt}
               />
             </motion.div>

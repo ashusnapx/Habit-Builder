@@ -19,6 +19,7 @@ import Select from "react-select";
 import { motion } from "framer-motion";
 import { Badge } from "./ui/badge";
 import ShinyBadge from "./ShinyBadge";
+import Image from "next/image";
 
 const SubjectList: React.FC = () => {
   const user = useFetchUser();
@@ -169,6 +170,8 @@ const SubjectList: React.FC = () => {
         <h1 className='mb-5 text-2xl font-semibold tracking-tighter capitalize text-gray-800 dark:text-gray-200'>
           {getGreeting()} {user?.user?.name || "Guest"} 👋🏻
         </h1>
+
+        {/* <Image src={"/hhh.png"} alt={"hhh"} height={100} width={100} className='mb-5' /> */}
         <div className='grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
           {Array(6)
             .fill(null)
